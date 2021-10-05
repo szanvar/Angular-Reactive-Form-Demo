@@ -1,0 +1,45 @@
+<div class = "container-fluid">
+  <h2> Marvellous Login Form </h2>
+  
+<!--Add FormGroup woth our model-->
+
+<form [formGroup] = "MarvellousForm">
+  <div class="form-group">
+    <label> User Name </label>
+    <input type="text" class="form-control" formControlName="username"
+
+    [class.is-invalid] = "MarvellousForm.controls['username'].invalid && 
+                          MarvellousForm.controls['username'].touched">
+
+     <div *ngIf="MarvellousForm.controls.username.touched && MarvellousForm.controls.username.invalid" 
+          class="alert alert-danger">
+          <!--  *ngIf="MarvellousForm.controls['username'].invalid && (MarvellousForm.controls['username'].dirty || MarvellousForm.controls['username'].touched)" -->
+        <div *ngIf="MarvellousForm.controls.username.errors?.required">Please provide username</div>
+        <div *ngIf="MarvellousForm.controls.username.errors?.pattern">Please provide valid username</div>
+        <div *ngIf="MarvellousForm.controls.username.errors?.minlength">Please provide at least 3 letter</div>
+    </div>
+     <!-- <div *ngIf
+      ="username.invalid"> Name is incorrect. </div>
+     <div *ngIf="username.touched" > Name is required. </div> -->
+  </div>
+  
+  <div class="form-group">
+    <label> Password </label>
+    <input type="password" class="form-control" formControlName="passowrd" 
+    [(ngModel)]="password">
+  </div>
+  
+  <div class="form-group">
+    <label> Confirm Password </label>
+    <input type="password" class="form-control" formControlName="ConfirmPass"
+    [(ngModel)]="ConfirmPass" >
+  </div>
+
+  <div style="margin: 10px;">
+    <button type="submit" class="btn btn-primary" (click)="fun()"> Login </button>
+    {{ans}}
+  </div>
+</form>
+
+{{MarvellousForm.value | json}}
+</div>
